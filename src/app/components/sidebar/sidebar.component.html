@@ -1,0 +1,17 @@
+<div class="sidebar" [class.visible]="menuOpen">
+  <img class="logo" routerLink="/" src="/assets/graphics/logo.svg" alt="company logo">
+  <ul class="menu">
+    <li class="menuItem" routerLink="/article" routerLinkActive="active" >
+      Artikkel
+      <img class="menuSvg fileSvg" routerLinkActive="active" src="/assets/graphics/file-solid.svg" alt="">
+    </li>
+    <li class="menuItem" routerLink="/list" routerLinkActive="active">
+      Tabel
+      <img class="menuSvg tableSvg" routerLinkActive="active" src="/assets/graphics/table.svg" alt="">
+    </li>
+    <li class="menuItem" routerLink="/life" routerLinkActive="active">
+      Game of life
+      <img class="menuSvg imageSvg" routerLinkActive="active" src="/assets/graphics/image-regular.svg" alt="">
+    </li>
+  </ul>
+</div>

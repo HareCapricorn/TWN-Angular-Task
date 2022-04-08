@@ -1,0 +1,9 @@
+<div class="header">
+  <button class="button" (click)="toggleSidebarMenu()">
+    <img *ngIf="menuOpen else menuClosedBlock" class="xmark" src="/assets/graphics/times.svg" alt="close menu">
+    <ng-template #menuClosedBlock>
+      <img class="hamburger" src="/assets/graphics/bars-solid.svg" alt="open menu">
+    </ng-template>
+  </button>
+  <img class="logo" src="/assets/graphics/logo.svg" alt="logo">
+</div>

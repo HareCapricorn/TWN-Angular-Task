@@ -1,0 +1,97 @@
+.wrapper {
+  max-width: var(--maxWidth);
+  margin: 0 auto;
+}
+
+.articleTitle {
+  text-align: center;
+  font-size: 2.8125rem;
+  text-transform: uppercase;
+  color: white;
+}
+
+.articleIntro {
+  font-weight: bold;
+  color: white;
+  font-size: 1.14rem;
+  margin: 2.5rem 0;
+}
+
+.articleImageWrapper {
+  position: relative;
+  padding-bottom: 50%;
+}
+
+.articleMainImage {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 2;
+  transition: transform .2s;
+}
+
+.articleImageTitle {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 0.625rem 1.5rem;
+  background: rgba(0,0,0,.5);
+  color: white;
+  z-index: 2;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.articleImageBackgroundWrapper {
+  overflow: hidden;
+  z-index: 1;
+}
+
+.articleImageBackgroundWrapper,
+.articleImageBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.articleImageBackground {
+  background: center center no-repeat;
+  filter: blur(0.625rem);
+  transition: transform .3s;
+  background-size: cover;
+}
+
+.articleImageWrapper:hover .articleMainImage{
+  transform: scale(1.05);
+}
+
+.articleImageWrapper:hover .articleImageBackground {
+  transform: scale(1.25);
+}
+
+.articleBody {
+  color: white;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.articleBody > p {
+  margin: 2.5rem 0;
+}
+
+.articleTags {
+  display: flex;
+  gap: 1rem;
+}
+
+.articleTag {
+  background-color: #ff57a2;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  display: inline-block;
+  color: white;
+  font-weight: bold;
+}

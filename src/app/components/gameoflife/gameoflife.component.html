@@ -1,0 +1,68 @@
+<div class="wrapper">
+  <h1 class="title">Conway's Game Of Life</h1>
+  <form class="optionsWrapper" [formGroup]="gameOptionsForm">
+    <div class="option">
+      <div class="optionLabel">Grid width</div>
+      <select class="optionSelect" formControlName="gridWidth">
+        <option [ngValue]="option" *ngFor="let option of generateSelectOptionsArray(1, 8)">{{option}}</option>
+      </select>
+      <div class="downArrowWrapper">
+        <img class="downArrow" src="/assets/graphics/chevron-down-solid.svg" alt="">
+      </div>
+    </div>
+    <div class="option">
+      <div class="optionLabel">Grid height</div>
+      <select class="optionSelect" formControlName="gridHeight">
+        <option [ngValue]="option" *ngFor="let option of generateSelectOptionsArray(1, 5)">{{option}}</option>
+      </select>
+      <div class="downArrowWrapper">
+        <img class="downArrow" src="/assets/graphics/chevron-down-solid.svg" alt="">
+      </div>
+    </div>
+    <div class="option">
+      <div class="optionLabel">Speed</div>
+      <select class="optionSelect" formControlName="speed">
+        <option [ngValue]="120">Slow</option>
+        <option [ngValue]="60">Normal</option>
+        <option [ngValue]="30">Fast</option>
+      </select>
+      <div class="downArrowWrapper">
+        <img class="downArrow" src="/assets/graphics/chevron-down-solid.svg" alt="">
+      </div>
+    </div>
+    <div class="option">
+      <div class="optionLabel">Initial life probability</div>
+      <select class="optionSelect" formControlName="probability">
+        <option [ngValue]="option" *ngFor="let option of generateSelectOptionsArray(1, 10)">{{option + '%'}}</option>
+      </select>
+      <div class="downArrowWrapper">
+        <img class="downArrow" src="/assets/graphics/chevron-down-solid.svg" alt="">
+      </div>
+    </div>
+    <div class="option">
+      <button class="button" (click)="toggleRunning()">{{isRunning ? 'Pause' : 'Resume'}}</button>
+    </div>
+    <div class="option">
+      <button class="button" (click)="handleApply()">Apply</button>
+    </div>
+  </form>
+  <span class="aliveLabel">Currently alive</span>
+  <div class="aliveWrapper">
+    <div class="aliveIndicator" [style.width]="getLivesPercentage()">
+      <span class="aliveIndicatorLabel">{{getLivesPercentage()}}</span>
+    </div>
+  </div>
+  <div>
+    <table class="grid" aria-hidden="true">
+      <tbody>
+        <tr *ngFor="let row of grid">
+          <td class="gridCell"
+            [class.gridCellAlive]="cell === 1"
+            [class.gridCellDead]="cell === 0"
+            *ngFor="let cell of row">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

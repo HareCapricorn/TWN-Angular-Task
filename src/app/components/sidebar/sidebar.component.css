@@ -1,0 +1,112 @@
+.sidebar {
+  width: var(--menuWidth);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 25px;
+  position: fixed;
+  background: #fff;
+  transition: transform 250ms;
+  z-index: 5;
+}
+
+.logo {
+  width: 170px;
+  margin: 1.5625rem 0 3.125rem;
+  cursor: pointer;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.menuItem {
+  text-decoration: none;
+  color: #3a3d57;
+  text-transform: uppercase;
+  transition: transform 250ms;
+  transform-origin: right center;
+  display: flex;
+  padding: 0.7rem;
+  font-size: 1.1875rem;
+  font-family: 'twn medium';
+  align-items: center;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+
+.menuSvg {
+  height: 1.2rem;
+  width: 1rem;
+  margin-left: 1rem;
+  transition: transform 250ms;
+
+  /* https://codepen.io/sosuke/pen/Pjoqqp was used because img doesn't support fill
+  the svg itself could be copied into the html as an alternative */
+  filter: invert(24%) sepia(27%) saturate(568%) hue-rotate(195deg) brightness(91%) contrast(94%);
+}
+
+.tableSvg {
+  transform: scale(1.2);
+}
+
+.imageSvg {
+  height: 1rem;
+  transform: scale(1.4);
+}
+
+.active,
+.menuItem:hover {
+  color: #03875c;
+  transform: scale(1.05);
+}
+
+.fileSvg.active,
+.tableSvg.active,
+.imageSvg.active,
+.menuItem:hover .fileSvg,
+.menuItem:hover .tableSvg,
+.menuItem:hover .imageSvg {
+  filter: invert(34%) sepia(90%) saturate(960%) hue-rotate(128deg) brightness(88%) contrast(98%);
+}
+
+.fileSvg.active,
+.menuItem:hover .fileSvg {
+  transform: scale(1.5);
+}
+
+.tableSvg.active,
+.menuItem:hover .tableSvg {
+  transform: scale(1.7);
+}
+
+.imageSvg.active,
+.menuItem:hover .imageSvg {
+  transform: scale(1.8);
+}
+
+@media screen and (max-width: 960px) {
+  .sidebar {
+      transform: translate(calc(var(--menuWidth) * -1));
+  }
+
+  .sidebar.visible {
+      transform: translate(0);
+  }
+
+  .logo {
+      display: none;
+  }
+
+  .menu {
+      padding-top: 2.5rem;
+  }
+
+  .menuItem {
+      font-size: 1rem;
+  }
+}
+

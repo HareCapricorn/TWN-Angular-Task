@@ -1,0 +1,20 @@
+<div class="wrapper">
+  <div *ngIf="fetchComplete else loadingBlock">
+    <h1 class="articleTitle">{{article?.title}}</h1>
+    <div class="articleIntro" [innerHTML]="article?.intro"></div>
+    <div class="articleImageWrapper">
+      <img class="articleMainImage" src={{article?.image?.medium}} alt={{article?.image?.alt}}>
+      <div class="articleImageTitle">{{article?.image?.title}}</div>
+      <div class="articleImageBackgroundWrapper">
+        <div class="articleImageBackground" [style.background-image]="'url(' + article?.image?.medium + ')'"></div>
+      </div>
+    </div>
+    <div class="articleBody" [innerHTML]="article?.body"></div>
+    <div class="articleTags">
+      <div class="articleTag" *ngFor="let tag of article.tags">{{tag}}</div>
+    </div>
+  </div>
+  <ng-template #loadingBlock>
+    <app-loadingspinner></app-loadingspinner>
+  </ng-template>
+</div>

@@ -1,0 +1,87 @@
+<div class="wrapper" *ngIf="!!settings?.activeArray?.length else loadingBlock">
+  <div>
+    <h1 class="title">Nimekiri</h1>
+    <table class="table" aria-label="Table of people">
+      <thead>
+        <tr>
+          <th class="tableHeader">
+            <button class="tableHeaderButton" (click)="sortTable('firstname')">
+              Eesnimi
+              <img class="sortSvg" [src]="getSortSvgSrc('firstname')" alt="">
+            </button>
+          </th>
+          <th class="tableHeader">
+            <button class="tableHeaderButton" (click)="sortTable('surname')">
+              Perekonnanimi
+              <img class="sortSvg" [src]="getSortSvgSrc('surname')" alt="">
+            </button>
+          </th>
+          <th class="tableHeader">
+            <button class="tableHeaderButton" (click)="sortTable('sex')">
+              Sugu
+              <img class="sortSvg" [src]="getSortSvgSrc('sex')" alt="">
+            </button>
+          </th>
+          <th class="tableHeader">
+            <button class="tableHeaderButton" (click)="sortTable('date')">
+              Sünnikuupäev
+              <img class="sortSvg" [src]="getSortSvgSrc('date')" alt="">
+            </button>
+          </th>
+          <th class="tableHeader">
+            Telefon
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let row of getCurrentPageRows()">
+          <tr class="rowContents row" [class.active]="activeRowId === row.id" (click)="changeActiveRow(row.id)">
+            <td class="rowContents" [class.active]="activeRowId === row.id">
+              {{row.firstname}}
+            </td>
+            <td class="rowContents" [class.active]="activeRowId === row.id">
+              {{row.surname}}
+            </td>
+            <td class="rowContents" [class.active]="activeRowId === row.id">
+              {{row.sex === 'm' ? 'Mees' : 'Naine'}}
+            </td>
+            <td class="rowContents" [class.active]="activeRowId === row.id">
+              {{row.date * 1000 | date:'dd.MM.YYYY'}}
+            </td>
+            <td class="rowContents" [class.active]="activeRowId === row.id">
+              {{row.phone.replace('+372', '+372 ')}}
+            </td>
+          </tr>
+          <tr class="rowTab" *ngIf="activeRowId === row.id">
+            <td colspan="5">
+              <div class="rowTabContents">
+                <img class="rowTabImage" src={{row.image.medium}} alt="">
+                <div class="rowTabBody" >
+                  <div [innerHTML]="getShortDescription(row.body)"></div>
+                  <button class="link" [routerLink]="['/article', row.id]">Loe rohkem</button>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+  <div class="pageButtonWrapper">
+    <button class="pageButton" (click)="setPageNumber(pageNumber - 1)" [class.inactive]="isPageArrowInactive('left')">
+      <img class="pageArrow" src="assets/graphics/chevron-left-solid.svg" alt="previous page">
+    </button>
+    <button class="pageButton"
+      [class.active]="page === pageNumber"
+      *ngFor="let page of getPageButtons()"
+      (click)="setPageNumber(page)">
+        {{page + 1}}
+    </button>
+    <button class="pageButton" (click)="setPageNumber(pageNumber + 1)" [class.inactive]="isPageArrowInactive('right')">
+      <img class="pageArrow" src="assets/graphics/chevron-right-solid.svg" alt="next page">
+    </button>
+  </div>
+</div>
+<ng-template #loadingBlock>
+  <app-loadingspinner></app-loadingspinner>
+</ng-template>
